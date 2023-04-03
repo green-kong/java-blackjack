@@ -19,4 +19,14 @@ public abstract class AbstractHand implements Hand {
     public Score calculateScore() {
         return cards.calculateScoreSum();
     }
+
+    @Override
+    public boolean isBlackjack() {
+        return false;
+    }
+
+    @Override
+    public boolean isBust() {
+        return false;
+    }
 }

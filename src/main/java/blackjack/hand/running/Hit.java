@@ -3,6 +3,7 @@ package blackjack.hand.running;
 import blackjack.card.Cards;
 import blackjack.hand.Hand;
 import blackjack.hand.finished.Stay;
+import blackjack.result.Result;
 
 public class Hit extends Running {
     public Hit(Cards cards) {
@@ -12,5 +13,10 @@ public class Hit extends Running {
     @Override
     public Hand stay() {
         return new Stay(getCards());
+    }
+
+    @Override
+    public Result battle(Hand other) {
+        throw new UnsupportedOperationException();
     }
 }
