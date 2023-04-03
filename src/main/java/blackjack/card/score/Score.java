@@ -3,8 +3,9 @@ package blackjack.card.score;
 import java.util.Objects;
 
 public final class Score {
-    public static Score ZERO_SCORE = new Score(0);
-    public static Score ACE_ADDITIONAL_SCORE = new Score(10);
+    public static final Score LIMIT_SCORE = new Score(21);
+    public static final Score ZERO_SCORE = new Score(0);
+    public static final Score ACE_ADDITIONAL_SCORE = new Score(10);
     private final int value;
 
     public Score(int value) {
@@ -35,5 +36,9 @@ public final class Score {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    public boolean isBiggerThan(Score other) {
+        return this.value > other.value;
     }
 }

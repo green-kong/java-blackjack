@@ -1,18 +1,17 @@
-package blackjack;
+package blackjack.card;
 
 import static blackjack.card.score.Score.ACE_ADDITIONAL_SCORE;
 import static blackjack.card.score.Score.ZERO_SCORE;
 
 import java.util.List;
 
-import blackjack.card.Card;
 import blackjack.card.score.Score;
 import blackjack.card.score.ScoreCalculator;
 
-public final class Hand {
+public final class Cards {
     private final List<Card> cards;
 
-    public Hand(List<Card> cards) {
+    public Cards(List<Card> cards) {
         this.cards = cards;
     }
 
@@ -42,5 +41,13 @@ public final class Hand {
     private boolean containAce() {
         return cards.stream()
                 .anyMatch(Card::isAce);
+    }
+
+    public boolean isBust() {
+        return calculateScoreSum().isBiggerThan(Score.LIMIT_SCORE);
+    }
+
+    public boolean isBlackjack() {
+        return cards.size() == 2 && calculateScoreSum().equals(Score.LIMIT_SCORE);
     }
 }
