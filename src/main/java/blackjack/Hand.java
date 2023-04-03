@@ -9,7 +9,7 @@ import blackjack.card.Card;
 import blackjack.card.score.Score;
 import blackjack.card.score.ScoreCalculator;
 
-public class Hand {
+public final class Hand {
     private final List<Card> cards;
 
     public Hand(List<Card> cards) {

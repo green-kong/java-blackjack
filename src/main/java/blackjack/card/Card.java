@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import blackjack.card.score.Score;
 
-public class Card {
+public final class Card {
     private static final Map<String, Card> cardCacheTable = new HashMap<>();
     private final Rank rank;
     private final Shape shape;

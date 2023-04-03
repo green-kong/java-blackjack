@@ -2,7 +2,7 @@ package blackjack.card.score;
 
 import java.util.Objects;
 
-public class Score {
+public final class Score {
     public static Score ZERO_SCORE = new Score(0);
     public static Score ACE_ADDITIONAL_SCORE = new Score(10);
     private final int value;

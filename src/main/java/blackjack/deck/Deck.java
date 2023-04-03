@@ -10,7 +10,7 @@ import blackjack.card.Rank;
 import blackjack.card.Shape;
 import blackjack.deck.shuffler.Shuffler;
 
-public class Deck {
+public final class Deck {
     private final ArrayDeque<Card> deck;
 
     private Deck(ArrayDeque<Card> deck) {

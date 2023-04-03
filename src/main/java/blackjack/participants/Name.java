@@ -2,7 +2,7 @@ package blackjack.participants;
 
 import java.util.Objects;
 
-public class Name {
+public final class Name {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_ERROR_MSG = "1글자 이상 5글자 이하의 이름만 가능합니다.";
