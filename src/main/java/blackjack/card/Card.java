@@ -46,4 +46,8 @@ public class Card {
     public int hashCode() {
         return Objects.hash(rank, shape);
     }
+
+    public boolean isAce() {
+        return rank == Rank.ACE;
+    }
 }

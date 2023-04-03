@@ -3,6 +3,7 @@ package blackjack.card.score;
 import java.util.Objects;
 
 public class Score {
+    public static Score ZERO_SCORE = new Score(0);
     public static Score ACE_ADDITIONAL_SCORE = new Score(10);
     private final int value;
 
@@ -12,6 +13,11 @@ public class Score {
 
     public int getValue() {
         return value;
+    }
+
+
+    public boolean isAcceptableAdditionalScore() {
+        return this.value <= 11;
     }
 
     @Override

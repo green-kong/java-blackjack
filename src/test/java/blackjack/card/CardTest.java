@@ -38,4 +38,20 @@ class CardTest {
 
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("에이스 카드이면 true를 반환한다.")
+    void isAceTrue() {
+        Card card = Card.of(Rank.ACE, Shape.HEART);
+
+        assertThat(card.isAce()).isTrue();
+    }
+
+    @Test
+    @DisplayName("에이스 카드가 아니면 false 반환한다.")
+    void isAceFalse() {
+        Card card = Card.of(Rank.TEN, Shape.HEART);
+
+        assertThat(card.isAce()).isFalse();
+    }
 }
