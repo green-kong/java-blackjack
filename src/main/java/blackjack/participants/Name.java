@@ -1,4 +1,4 @@
-package participants;
+package blackjack.participants;
 
 import java.util.Objects;
 
