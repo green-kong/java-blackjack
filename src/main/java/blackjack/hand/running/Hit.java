@@ -5,7 +5,7 @@ import blackjack.hand.Hand;
 import blackjack.hand.finished.Stay;
 import blackjack.result.Result;
 
-public class Hit extends Running {
+public final class Hit extends Running {
     public Hit(Cards cards) {
         super(cards);
     }

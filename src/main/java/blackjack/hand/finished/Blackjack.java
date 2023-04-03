@@ -4,7 +4,7 @@ import blackjack.card.Cards;
 import blackjack.hand.Hand;
 import blackjack.result.Result;
 
-public class Blackjack extends Finished {
+public final class Blackjack extends Finished {
     public Blackjack(Cards cards) {
         super(cards);
     }
