@@ -5,6 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import blackjack.domain.card.score.Score;
+import blackjack.domain.card.score.ScoreCalculator;
+
 class ScoreCalculatorTest {
     @Test
     @DisplayName("점수를 합계를 구한다.")

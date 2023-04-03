@@ -8,9 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import blackjack.card.Card;
-import blackjack.card.Rank;
-import blackjack.card.Shape;
+import blackjack.domain.card.Card;
+import blackjack.domain.card.Rank;
+import blackjack.domain.card.Shape;
+import blackjack.domain.deck.shuffler.RandomShuffler;
 
 class RandomShufflerTest {
     @Test

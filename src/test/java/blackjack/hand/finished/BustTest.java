@@ -9,9 +9,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import blackjack.card.Cards;
-import blackjack.hand.Hand;
-import blackjack.result.Result;
+import blackjack.domain.card.Cards;
+import blackjack.domain.hand.Hand;
+import blackjack.domain.hand.finished.Blackjack;
+import blackjack.domain.hand.finished.Bust;
+import blackjack.domain.hand.finished.Stay;
+import blackjack.domain.result.Result;
 
 class BustTest {
 

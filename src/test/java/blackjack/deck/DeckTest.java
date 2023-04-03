@@ -8,11 +8,12 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import blackjack.card.Card;
-import blackjack.card.Rank;
-import blackjack.card.Shape;
 import blackjack.deck.shuffler.CheatShuffler;
-import blackjack.deck.shuffler.RandomShuffler;
+import blackjack.domain.card.Card;
+import blackjack.domain.card.Rank;
+import blackjack.domain.card.Shape;
+import blackjack.domain.deck.Deck;
+import blackjack.domain.deck.shuffler.RandomShuffler;
 
 class DeckTest {
     @Test
@@ -46,7 +47,7 @@ class DeckTest {
                 Card.of(Rank.TWO, Shape.HEART)
         ));
         Deck deck = Deck.createDeck(cheatShuffler);
-        
+
         deck.drawCard();
 
         assertThatThrownBy(deck::drawCard)

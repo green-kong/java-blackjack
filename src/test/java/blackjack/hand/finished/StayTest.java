@@ -9,12 +9,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import blackjack.card.Card;
-import blackjack.card.Cards;
-import blackjack.card.Rank;
-import blackjack.card.Shape;
-import blackjack.hand.Hand;
-import blackjack.result.Result;
+import blackjack.domain.card.Card;
+import blackjack.domain.card.Cards;
+import blackjack.domain.card.Rank;
+import blackjack.domain.card.Shape;
+import blackjack.domain.hand.Hand;
+import blackjack.domain.hand.finished.Blackjack;
+import blackjack.domain.hand.finished.Bust;
+import blackjack.domain.hand.finished.Stay;
+import blackjack.domain.result.Result;
 
 class StayTest {
     Hand hand;

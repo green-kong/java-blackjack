@@ -2,7 +2,8 @@ package blackjack.deck.shuffler;
 
 import java.util.List;
 
-import blackjack.card.Card;
+import blackjack.domain.card.Card;
+import blackjack.domain.deck.shuffler.Shuffler;
 
 public class CheatShuffler implements Shuffler {
     private final List<Card> cards;
