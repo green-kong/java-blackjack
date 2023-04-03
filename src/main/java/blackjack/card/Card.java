@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import blackjack.card.score.Score;
+
 public class Card {
     private static final Map<String, Card> cardCacheTable = new HashMap<>();
     private final Rank rank;
@@ -22,6 +24,10 @@ public class Card {
             cardCacheTable.put(key, card);
         }
         return card;
+    }
+
+    public Score score() {
+        return rank.getScore();
     }
 
     @Override
