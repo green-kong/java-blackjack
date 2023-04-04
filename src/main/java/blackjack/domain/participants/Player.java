@@ -20,4 +20,8 @@ public final class Player {
     public Participant getInfo() {
         return participant;
     }
+
+    public boolean isDrawable() {
+        return participant.isDrawable();
+    }
 }

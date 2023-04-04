@@ -63,11 +63,15 @@ public class BlackJackGame {
 
     public void initialDrawToPlayer(Player player) {
         for (int i = 0; i < INITIAL_DRAW_COUNT; i++) {
-            player.takeCard(deck.drawCard());
+            drawToPlayer(player);
         }
     }
 
     public Participant getDealerInfo() {
         return participants.getDealerInfo();
+    }
+
+    public void drawToPlayer(Player player) {
+        player.takeCard(deck.drawCard());
     }
 }

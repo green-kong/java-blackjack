@@ -32,4 +32,8 @@ public final class Participant {
     public List<String> getCardNames() {
         return hand.getCards().getNames();
     }
+
+    public boolean isDrawable() {
+        return hand.isDrawable();
+    }
 }

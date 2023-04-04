@@ -19,6 +19,7 @@ public class Controller {
         recruitPlayers();
         takeBettingMoney();
         initialDraw();
+        drawAdditionalCardToPlayers();
     }
 
     private void recruitPlayers() {
@@ -61,5 +62,31 @@ public class Controller {
             PlayerInfoDto playerInfoDto = PlayerInfoDto.from(playerInfo);
             outputView.printPlayerInfo(playerInfoDto);
         }
+    }
+
+    private void drawAdditionalCardToPlayers() {
+        List<Player> players = blackJackGame.getPlayers();
+        for (Player player : players) {
+            drawAdditionalCardToPlayer(player);
+        }
+    }
+
+    private void drawAdditionalCardToPlayer(Player player) {
+        Command command = Command.Y;
+        while (player.isDrawable() && command != Command.N) {
+            command = decideDrawCard(player);
+        }
+    }
+
+    private Command decideDrawCard(Player player) {
+        Command command;
+        String commandInput = inputView.readAdditionalDrawCommand(player.getName());
+        command = Command.find(commandInput);
+        if (command.isYes()) {
+            blackJackGame.drawToPlayer(player);
+            PlayerInfoDto playerInfoDto = PlayerInfoDto.from(player.getInfo());
+            outputView.printPlayerInfo(playerInfoDto);
+        }
+        return command;
     }
 }
