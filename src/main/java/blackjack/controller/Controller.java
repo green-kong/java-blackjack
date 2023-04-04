@@ -20,6 +20,7 @@ public class Controller {
         takeBettingMoney();
         initialDraw();
         drawAdditionalCardToPlayers();
+        drawAdditionalCardToDealer();
     }
 
     private void recruitPlayers() {
@@ -88,5 +89,15 @@ public class Controller {
             outputView.printPlayerInfo(playerInfoDto);
         }
         return command;
+    }
+
+    private void drawAdditionalCardToDealer() {
+        while (blackJackGame.isDealerDrawable()) {
+            outputView.printDealerDrawAdditionalCardMessage();
+            blackJackGame.drawToDealer();
+            Participant dealerInfo = blackJackGame.getDealerInfo();
+            PlayerInfoDto dealerInfoDto = PlayerInfoDto.from(dealerInfo);
+            outputView.printPlayerInfo(dealerInfoDto);
+        }
     }
 }

@@ -6,6 +6,7 @@ public final class Score {
     public static final Score LIMIT_SCORE = new Score(21);
     public static final Score ZERO_SCORE = new Score(0);
     public static final Score ACE_ADDITIONAL_SCORE = new Score(10);
+    public static final Score DEALER_DRAW_LIMIT = new Score(16);
     private final int value;
 
     public Score(int value) {

@@ -25,4 +25,8 @@ public final class Participants {
     public Participant getDealerInfo() {
         return dealer.getParticipant();
     }
+
+    public boolean isDealerDrawable() {
+        return dealer.isUnderScore();
+    }
 }

@@ -56,7 +56,7 @@ public class BlackJackGame {
         }
     }
 
-    private void drawToDealer() {
+    public void drawToDealer() {
         Card card = deck.drawCard();
         participants.drawToDealer(card);
     }
@@ -73,5 +73,9 @@ public class BlackJackGame {
 
     public void drawToPlayer(Player player) {
         player.takeCard(deck.drawCard());
+    }
+
+    public boolean isDealerDrawable() {
+        return participants.isDealerDrawable();
     }
 }

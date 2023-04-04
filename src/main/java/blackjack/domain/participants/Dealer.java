@@ -1,6 +1,7 @@
 package blackjack.domain.participants;
 
 import blackjack.domain.card.Card;
+import blackjack.domain.card.score.Score;
 
 public class Dealer {
     public static final String DEALER_NAME = "딜러";
@@ -16,5 +17,9 @@ public class Dealer {
 
     public Participant getParticipant() {
         return participant;
+    }
+
+    public boolean isUnderScore() {
+        return Score.DEALER_DRAW_LIMIT.isBiggerThan(participant.calculateScore());
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
+import blackjack.domain.card.score.Score;
 import blackjack.domain.hand.Hand;
 import blackjack.domain.hand.running.Hit;
 import blackjack.domain.result.Result;
@@ -35,5 +36,9 @@ public final class Participant {
 
     public boolean isDrawable() {
         return hand.isDrawable();
+    }
+
+    public Score calculateScore() {
+        return hand.calculateScore();
     }
 }
