@@ -11,4 +11,8 @@ public enum Result {
     Result(double rate) {
         this.rate = rate;
     }
+
+    public double calculateRate(int value) {
+        return value * this.rate;
+    }
 }

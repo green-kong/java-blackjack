@@ -24,4 +24,8 @@ public final class Player {
     public boolean isDrawable() {
         return participant.isDrawable();
     }
+
+    public void stay() {
+        participant.stay();
+    }
 }

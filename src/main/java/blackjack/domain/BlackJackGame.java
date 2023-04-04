@@ -1,18 +1,23 @@
 package blackjack.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import blackjack.domain.betting.BettingTable;
 import blackjack.domain.betting.Money;
+import blackjack.domain.betting.PrizeCalculator;
 import blackjack.domain.card.Card;
 import blackjack.domain.deck.Deck;
 import blackjack.domain.deck.shuffler.Shuffler;
 import blackjack.domain.participants.Participant;
 import blackjack.domain.participants.Participants;
 import blackjack.domain.participants.Player;
+import blackjack.domain.result.Result;
 
 public class BlackJackGame {
     public static final int INITIAL_DRAW_COUNT = 2;
@@ -77,7 +82,27 @@ public class BlackJackGame {
         player.takeCard(deck.drawCard());
     }
 
+    public boolean isDealerUnderScore() {
+        return participants.isDealerUnderScore();
+    }
+
+    public Map<Player, Money> calculateBettingResult() {
+        Map<Player, Money> bettingResultTable = new LinkedHashMap<>();
+        Map<Player, Result> playerResultMap = participants.calculateWinning();
+        for (Player player : playerResultMap.keySet()) {
+            Money money = bettingTable.getMoney(player);
+            Result result = playerResultMap.get(player);
+            Money prize = PrizeCalculator.calculateByResult(money, result);
+            bettingResultTable.put(player, prize);
+        }
+        return Collections.unmodifiableMap(new LinkedHashMap<>(bettingResultTable));
+    }
+
     public boolean isDealerDrawable() {
         return participants.isDealerDrawable();
+    }
+
+    public void stayDealer() {
+        participants.stayDealer();
     }
 }

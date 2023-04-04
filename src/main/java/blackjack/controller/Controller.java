@@ -1,12 +1,15 @@
 package blackjack.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import blackjack.domain.BlackJackGame;
+import blackjack.domain.betting.Money;
 import blackjack.domain.deck.shuffler.RandomShuffler;
 import blackjack.domain.participants.Participant;
 import blackjack.domain.participants.Player;
+import blackjack.dto.BettingResultDto;
 import blackjack.dto.PlayerInfoDto;
 import blackjack.dto.ScoreInfoDto;
 import blackjack.view.InputView;
@@ -23,7 +26,8 @@ public class Controller {
         initialDraw();
         drawAdditionalCardToPlayers();
         drawAdditionalCardToDealer();
-        printResults();
+        printCardResults();
+        printBettingResults();
     }
 
     private void recruitPlayers() {
@@ -79,6 +83,9 @@ public class Controller {
         Command command = Command.Y;
         while (player.isDrawable() && command != Command.N) {
             command = decideDrawCard(player);
+            if (!command.isYes()) {
+                player.stay();
+            }
         }
     }
 
@@ -95,17 +102,16 @@ public class Controller {
     }
 
     private void drawAdditionalCardToDealer() {
-        while (blackJackGame.isDealerDrawable()) {
+        while (blackJackGame.isDealerUnderScore()) {
             outputView.printDealerDrawAdditionalCardMessage();
             blackJackGame.drawToDealer();
             Participant dealerInfo = blackJackGame.getDealerInfo();
             PlayerInfoDto dealerInfoDto = PlayerInfoDto.from(dealerInfo);
             outputView.printPlayerInfo(dealerInfoDto);
         }
-    }
-
-    private void printResults() {
-        printCardResults();
+        if (blackJackGame.isDealerDrawable()) {
+            blackJackGame.stayDealer();
+        }
     }
 
     private void printCardResults() {
@@ -120,6 +126,19 @@ public class Controller {
         return players.stream()
                 .map(Player::getInfo)
                 .map(ScoreInfoDto::from)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void printBettingResults() {
+        Map<Player, Money> bettingResultTable = blackJackGame.calculateBettingResult();
+        List<BettingResultDto> bettingResults = getBettingResults(bettingResultTable);
+        outputView.printBettingResults(bettingResults);
+    }
+
+    private List<BettingResultDto> getBettingResults(Map<Player, Money> bettingResultTable) {
+        return bettingResultTable.keySet()
+                .stream()
+                .map(player -> BettingResultDto.of(player.getName(), bettingResultTable.get(player)))
                 .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -22,4 +22,12 @@ public class Dealer {
     public boolean isUnderScore() {
         return Score.DEALER_DRAW_LIMIT.isBiggerThan(participant.calculateScore());
     }
+
+    public boolean isDrawable() {
+        return participant.isDrawable();
+    }
+
+    public void stay() {
+        participant.stay();
+    }
 }

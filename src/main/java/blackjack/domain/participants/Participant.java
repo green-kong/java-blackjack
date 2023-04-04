@@ -41,4 +41,8 @@ public final class Participant {
     public Score calculateScore() {
         return hand.calculateScore();
     }
+
+    public void stay() {
+        hand = hand.stay();
+    }
 }

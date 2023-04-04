@@ -18,4 +18,8 @@ public class BettingTable {
     public void put(Player player, Money money) {
         bettingTable.put(player, money);
     }
+
+    public Money getMoney(Player player) {
+        return bettingTable.get(player);
+    }
 }
