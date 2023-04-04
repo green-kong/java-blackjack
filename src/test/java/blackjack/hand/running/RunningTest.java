@@ -1,6 +1,7 @@
 package blackjack.hand.running;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 
@@ -60,5 +61,20 @@ class RunningTest {
         hand = hand.hit(Card.of(Rank.ACE, Shape.HEART));
 
         assertThat(hand instanceof Blackjack).isTrue();
+    }
+
+    @Test
+    @DisplayName("running의 구현체는 isDrawable을 실행하면 true를 반환한다.")
+    void isDrawable() {
+        assertThat(hand.isDrawable()).isTrue();
+    }
+
+    @Test
+    @DisplayName("running의 구현체는 battle을 실행하면 UOE를 던진다.")
+    void battle() {
+        Blackjack other = new Blackjack(new Cards(new ArrayList<>()));
+        
+        assertThatThrownBy(() -> hand.battle(other))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }

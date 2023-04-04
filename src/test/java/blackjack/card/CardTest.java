@@ -27,6 +27,15 @@ class CardTest {
         );
     }
 
+    public static Stream<Arguments> provideSymbolResults() {
+        return Stream.of(
+                Arguments.of(Card.of(Rank.SEVEN, Shape.HEART), "7하트"),
+                Arguments.of(Card.of(Rank.EIGHT, Shape.HEART), "8하트"),
+                Arguments.of(Card.of(Rank.ACE, Shape.DIAMOND), "A다이아몬드"),
+                Arguments.of(Card.of(Rank.TEN, Shape.SPADE), "10스페이드")
+        );
+    }
+
     @Test
     @DisplayName("카드를 생성한다.")
     void construct() {
@@ -57,4 +66,13 @@ class CardTest {
 
         assertThat(card.isAce()).isFalse();
     }
+
+    @ParameterizedTest(name = "카드의 심볼을 반환한다.")
+    @MethodSource("provideSymbolResults")
+    void getSymbol(Card card, String expected) {
+        String symbol = card.getSymbol();
+
+        assertThat(symbol).isEqualTo(expected);
+    }
+
 }

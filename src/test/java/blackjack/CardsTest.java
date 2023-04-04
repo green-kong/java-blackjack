@@ -92,4 +92,17 @@ class CardsTest {
 
         assertThat(cards.isBlackjack()).isTrue();
     }
+
+    @Test
+    @DisplayName("카드의 심볼을 리스트로 반환한다.")
+    void getNames() {
+        cards.addCard(Card.of(Rank.ACE, Shape.HEART));
+        cards.addCard(Card.of(Rank.KING, Shape.HEART));
+        cards.addCard(Card.of(Rank.TEN, Shape.SPADE));
+        cards.addCard(Card.of(Rank.THREE, Shape.CLOVER));
+
+        List<String> names = cards.getNames();
+
+        assertThat(names).containsExactlyInAnyOrder("A하트", "K하트", "10스페이드", "3클로버");
+    }
 }
