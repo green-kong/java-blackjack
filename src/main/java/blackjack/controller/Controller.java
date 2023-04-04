@@ -1,12 +1,14 @@
 package blackjack.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import blackjack.domain.BlackJackGame;
 import blackjack.domain.deck.shuffler.RandomShuffler;
 import blackjack.domain.participants.Participant;
 import blackjack.domain.participants.Player;
 import blackjack.dto.PlayerInfoDto;
+import blackjack.dto.ScoreInfoDto;
 import blackjack.view.InputView;
 import blackjack.view.OutputView;
 
@@ -21,6 +23,7 @@ public class Controller {
         initialDraw();
         drawAdditionalCardToPlayers();
         drawAdditionalCardToDealer();
+        printResults();
     }
 
     private void recruitPlayers() {
@@ -99,5 +102,24 @@ public class Controller {
             PlayerInfoDto dealerInfoDto = PlayerInfoDto.from(dealerInfo);
             outputView.printPlayerInfo(dealerInfoDto);
         }
+    }
+
+    private void printResults() {
+        printCardResults();
+    }
+
+    private void printCardResults() {
+        Participant dealerInfo = blackJackGame.getDealerInfo();
+        ScoreInfoDto dealerScoreInfo = ScoreInfoDto.from(dealerInfo);
+        List<Player> players = blackJackGame.getPlayers();
+        List<ScoreInfoDto> playerDtos = getPlayersInfo(players);
+        outputView.printCardResults(dealerScoreInfo, playerDtos);
+    }
+
+    private List<ScoreInfoDto> getPlayersInfo(List<Player> players) {
+        return players.stream()
+                .map(Player::getInfo)
+                .map(ScoreInfoDto::from)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
