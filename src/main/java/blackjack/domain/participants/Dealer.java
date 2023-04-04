@@ -3,7 +3,7 @@ package blackjack.domain.participants;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.score.Score;
 
-public class Dealer {
+public final class Dealer {
     public static final String DEALER_NAME = "딜러";
     private final Participant participant;
 
