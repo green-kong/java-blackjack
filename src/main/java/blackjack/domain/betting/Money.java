@@ -1,4 +1,4 @@
-package blackjack.domain;
+package blackjack.domain.betting;
 
 public class Money {
     private final int value;
